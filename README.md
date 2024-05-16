@@ -21,6 +21,11 @@ cd GenshinImpact-UP-Search
 python Search.py
 ```
 
+如需更新表格请执行以下命令:  
+```bash
+git pull
+```
+
 ## 特别感谢
 
 感谢所有为该项目做出贡献的人！  
@@ -28,4 +33,4 @@ python Search.py
   
 
 ### Stargazers
-[![Stargazers repo roster for @DuckDuckStudio/GenshinImpact-UP-Search](https://reporoster.com/stars/DuckDuckStudio/GenshinImpact-UP-Search)](https://github.com/DuckDuckStudio/GenshinImpact-UP-Search/stargazers)
+[![Stargazers](https://reporoster.com/stars/DuckDuckStudio/GenshinImpact-UP-Search)](https://github.com/DuckDuckStudio/GenshinImpact-UP-Search/stargazers)
