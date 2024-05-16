@@ -37,5 +37,4 @@
 - `Search-table.md` → 数据表格
 - `Search.py` → 查询程序
 - `LICENSE` → GPL-3许可证
-- `CHANGELOG` → 修改日志
 - `Check.py` → 表格检查
