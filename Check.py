@@ -62,5 +62,5 @@ def check_markdown_table(filename):
     print(f"{Fore.GREEN}检查完成！")
 
 if __name__ == "__main__":
-    filename = "test_use.md"
+    filename = "Search-table.md"
     check_markdown_table(filename)
