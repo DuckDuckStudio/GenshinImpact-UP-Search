@@ -1,5 +1,5 @@
 # GUS，一个根据原神 UID 搜索对应 UP 主的小工具
-[![Github LICENSE](https://img.shields.io/github/license/DuckDuckStudio/GenshinImpact-UP-Search?style=flat)]()  
+[![Github LICENSE](https://img.shields.io/github/license/DuckDuckStudio/GenshinImpact-UP-Search)]() ![GitHub issues](https://img.shields.io/github/issues/DuckDuckStudio/GenshinImpact-UP-Search)  
 目前实现方法为直接列出对应表格，故可能存在错误或缺漏，如有发现错误请提交 Issues。  
 如果你想将自己加入到表格中，则可以提交 PR 或者 Issues。  
 如果你想优化搜索程序，请提交 PR 。  
