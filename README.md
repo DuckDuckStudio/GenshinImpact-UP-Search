@@ -1,4 +1,5 @@
 # GUS，一个根据原神 UID 搜索对应 UP 主的小工具
+[![Github LICENSE](https://img.shields.io/github/license/DuckDuckStudio/GenshinImpact-UP-Search?style=flat)]()  
 目前实现方法为直接列出对应表格，故可能存在错误或缺漏，如有发现错误请提交 Issues。  
 如果你想将自己加入到表格中，则可以提交 PR 或者 Issues。  
 如果你想优化搜索程序，请提交 PR 。  
@@ -34,3 +35,6 @@ git pull
 
 ### Stargazers
 [![Stargazers](https://reporoster.com/stars/DuckDuckStudio/GenshinImpact-UP-Search)](https://github.com/DuckDuckStudio/GenshinImpact-UP-Search/stargazers)
+
+## 状态
+![Alt](https://repobeats.axiom.co/api/embed/aafa6967371b8625e9bb84f7ec3e31abc601f67a.svg "Repobeats analytics image")  
