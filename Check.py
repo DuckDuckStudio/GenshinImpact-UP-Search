@@ -41,6 +41,7 @@ def check_markdown_table(filename):
 
         # 检查重复的UID
         if uid in uid_set:
+            # 如果没有完全重复
             if flag != 1:
                 print(f"{Fore.YELLOW}异常项：UID相同但其他值不同 - {uid_up_tuple}（位于第 {line_num} 行）")
 
