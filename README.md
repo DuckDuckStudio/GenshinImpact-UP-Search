@@ -31,6 +31,8 @@ git pull
 *更新可能会有延后，如果没有列出请稍后再来查看。*  
 感谢所有为该项目做出贡献的人！  
 
+[![贡献者](https://contrib.rocks/image?repo=DuckDuckStudio/GenshinImpact-UP-Search)](https://github.com/DuckDuckStudio/GenshinImpact-UP-Search/graphs/contributors)
+
 ### Stargazers
 [![Stargazers](https://reporoster.com/stars/DuckDuckStudio/GenshinImpact-UP-Search)](https://github.com/DuckDuckStudio/GenshinImpact-UP-Search/stargazers)
 
