@@ -4,7 +4,7 @@ import os
 
 from colorama import init, Fore
 
-init(autoreset=True)  # 初始化 Colorama，使颜色输出生效
+init(autoreset=True)
 
 os.chdir(os.path.dirname(os.path.abspath(sys.argv[0])))
 try:
@@ -43,10 +43,10 @@ def search_table(query_type, query, md_table):
     if result:
         output = []
         for row in result:
-            output.append(Fore.GREEN + f'UID:{row[1]} UP名:{row[2]} b站ID:{row[3]}')
+            output.append(f'UID:{Fore.BLUE}{row[1]}{Fore.RESET} UP名:{Fore.BLUE}{row[2]}{Fore.RESET} b站ID:{Fore.BLUE}{row[3]}{Fore.RESET}')
         return '\n'.join(output)
     else:
-        return Fore.RED + f'未找到有关{query}的信息。'
+        return f"{Fore.BLUE}[!]{Fore.RESET} 未找到有关{query}的信息。"
 
 
 # 从文件中读取Markdown表格
@@ -70,7 +70,7 @@ while True:
     if is_valid_query_type(query_type):
         break
     else:
-        print(Fore.RED + '无效的搜索对象，请重新输入。')
+        print(f"{Fore.RED}✕{Fore.RESET} 无效的搜索对象，请重新输入。")
 
 # 用户输入搜索内容
 query = input('请输入搜索内容：')
@@ -82,9 +82,10 @@ md_table = read_md_table(file_path)
 # 进行搜索并输出结果
 result = search_table(query_type, query, md_table)
 if result:
+    print(f"{Fore.GREEN}✓{Fore.RESET} 找到以下结果:")
     print(result)
 else:
-    print(Fore.RED + 'f未找到有关{query}的信息。')
+    print(f'{Fore.RED}✕{Fore.RESET} 未找到有关{query}的信息。')
 
 # 等待用户结束程序
 input("按Enter键退出程序...")
