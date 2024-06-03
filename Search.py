@@ -1,8 +1,17 @@
 import re
+import sys
+import os
 
 from colorama import init, Fore
 
 init(autoreset=True)  # 初始化 Colorama，使颜色输出生效
+
+os.chdir(os.path.dirname(os.path.abspath(sys.argv[0])))
+try:
+    os.sys("git pull")
+except:
+    pass
+# 自动拉取更新
 
 def search_table(query_type, query, md_table):
     # 将Markdown表格转换为二维列表

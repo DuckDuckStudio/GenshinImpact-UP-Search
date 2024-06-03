@@ -9,16 +9,22 @@
    ```bash
    git clone https://github.com/DuckDuckStudio/GenshinImpact-UP-Search.git
    ```
-2. 运行`Search.py`
+2. 安装依赖
+   ```bash
+   pip install -r requirements.txt
+   REM 需求生成by芙芙工具箱-开发工具
+   ```
+3. 运行`Search.py`
    ```python
    python Search.py
    ```
-3. 查询你需要查询的内容
+4. 查询你需要查询的内容
 
 完整指令(先`cd`到所需目录):  
 ```bash
 git clone https://github.com/DuckDuckStudio/GenshinImpact-UP-Search.git
 cd GenshinImpact-UP-Search
+pip install -r requirements.txt
 python Search.py
 ```
 
@@ -26,6 +32,7 @@ python Search.py
 ```bash
 git pull
 ```
+PS:每次运行程序都会尝试自动运行该命令。  
 
 ## 特别感谢
 *更新可能会有延后，如果没有列出请稍后再来查看。*  
