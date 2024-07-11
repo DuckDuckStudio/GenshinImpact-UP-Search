@@ -46,7 +46,7 @@ def search_table(query_type, query, md_table):
             output.append(f'UID:{Fore.BLUE}{row[1]}{Fore.RESET} UP名:{Fore.BLUE}{row[2]}{Fore.RESET} b站ID:{Fore.BLUE}{row[3]}{Fore.RESET}')
         return '\n'.join(output)
     else:
-        return f"{Fore.BLUE}[!]{Fore.RESET} 未找到有关{query}的信息。"
+        return None
 
 
 # 从文件中读取Markdown表格
