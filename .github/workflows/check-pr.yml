@@ -1,0 +1,67 @@
+name: Validate PR
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Check.py
+        id: check
+        run: |
+          python Check.py
+        continue-on-error: true
+        env:
+          RETURN_CODE: $?
+
+      - name: Add PR labels
+        if: ${{ always() }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const core = require('@actions/core');
+            const github = require('@actions/github');
+            const context = github.context;
+            const pr_number = context.payload.pull_request.number;
+
+            let labelToAdd;
+            switch (parseInt(core.getInput('return_code'))) {
+              case 0:
+                labelToAdd = '检查：通过';
+                break;
+              case 1:
+                labelToAdd = '检查：异常';
+                break;
+              case 2:
+                labelToAdd = '检查：重复';
+                break;
+              default:
+                labelToAdd = '需要提交者确认';
+                break;
+            }
+
+            const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+            await octokit.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr_number,
+              labels: [labelToAdd],
+            });
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RETURN_CODE: ${{ steps.check.outputs.return_code }}
