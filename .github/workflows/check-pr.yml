@@ -35,12 +35,12 @@ jobs:
         with:
           script: |
             const core_a = require('@actions/core');
-            const github = require('@actions/github');
-            const context = github.context;
+            const github_a = require('@actions/github');
+            const context = github_a.context;
             const pr_number = context.payload.pull_request.number;
 
             let labelToAdd;
-            switch (parseInt(core.getInput('return_code'))) {
+            switch (parseInt(core_a.getInput('return_code'))) {
               case 0:
                 labelToAdd = '检查：通过';
                 break;
@@ -55,7 +55,7 @@ jobs:
                 break;
             }
 
-            const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+            const octokit = github_a.getOctokit(process.env.GITHUB_TOKEN);
             await octokit.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
