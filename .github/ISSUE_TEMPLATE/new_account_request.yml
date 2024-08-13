@@ -1,0 +1,32 @@
+name: "➕ 添加新对应账号"
+description: 添加更多你知道的UP主的账号
+labels: ["DEV-需要注意", "新功能", "缺少"]
+title: "[新账号]: "
+body:
+  - type: checkboxes
+    attributes:
+      label: 在继续之前，请确认以下内容
+      description: 在发布您的Issue之前，请确认以下内容。
+      options:
+        - label: 我已经搜索过已存在的Issue，并没有存在相同的正在进行中/重复/已解决的Issue
+          required: true
+        - label: 我确认账号对应信息无误
+          required: true
+        - label: 我确认这不是临时账号
+          required: true
+        - label: 我确认该UP发布过原神相关视频
+          required: false
+  - type: textarea
+    attributes:
+      label: 你需要添加哪几个对应账号
+      placeholder: |
+        为 UID UP名 UPID
+        例如 [500599456 三天修仙两天休闲 2287546]
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 更多核验信息 (可选)
+      placeholder: 给我们更多信息，以帮助我们确认对应账号正确无误 (建议填写此字段，这对实施很有帮助!)
+    validations:
+      required: false
