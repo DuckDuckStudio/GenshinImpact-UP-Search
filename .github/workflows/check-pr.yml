@@ -34,7 +34,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const core = require('@actions/core');
+            const core_a = require('@actions/core');
             const github = require('@actions/github');
             const context = github.context;
             const pr_number = context.payload.pull_request.number;
