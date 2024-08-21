@@ -1,0 +1,31 @@
+name: 检查表格是否正确
+
+on:
+    workflow_dispatch:
+    push:
+      branches:
+        - main
+        - Account
+      paths:
+        - 'Search-table.md'
+    pull_request:
+      paths:
+        - 'Search-table.md'
+
+jobs:
+  check-table:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v3
+
+    - name: 设置 Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: 运行检查
+      id: table-check
+      run: |
+        node .action_scripts/table-checker.js
