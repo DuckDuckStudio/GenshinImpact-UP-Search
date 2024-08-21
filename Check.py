@@ -71,9 +71,11 @@ def check_markdown_table(filename):
 
         # 输出检查结果
         print(f"{Fore.GREEN}检查完成！")
+        return err_flag
     except IndexError as e:
         print(f"{Fore.RED}错误: 索引错误: {e}\n请检查是否有多余空行。")
         err_flag = 3
+        return err_flag
 
 if __name__ == "__main__":
     filename = "Search-table.md"
