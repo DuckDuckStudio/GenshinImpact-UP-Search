@@ -33,36 +33,36 @@ jobs:
 
     - name: 设置标签
       if: github.event_name == 'pull_request'
-      uses: actions/github-script@v6
-      with:
-        script: |
-          const result = parseInt(process.env.result);
-          const labelsToAdd = [];
+      run: |
+        const { Octokit } = require('@octokit/rest');
+        const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
-          if (result === 0) {
-            labelsToAdd.push('检查：通过');
-          } else if (result === 1 || result === 3) {
-            labelsToAdd.push('检查：异常');
-          }
-          if (result === 2) {
-            labelsToAdd.push('检查：重复');
-          }
-          if (result === 1 || result === 2 || result === 3) {
-            labelsToAdd.push('需要提交者确认');
-          }
+        const result = parseInt(process.env.result);
+        const labelsToAdd = [];
 
-          if (labelsToAdd.length > 0) {
-            const { context } = require('@actions/github');
-            const { repo, pull_request } = context.issue;
+        if (result === 0) {
+          labelsToAdd.push('检查：通过');
+        } else if (result === 1 || result === 3) {
+          labelsToAdd.push('检查：异常');
+        }
+        if (result === 2) {
+          labelsToAdd.push('检查：重复');
+        }
+        if (result === 1 || result === 2 || result === 3) {
+          labelsToAdd.push('需要提交者确认');
+        }
 
-            const octokit = require('@actions/github').getOctokit(process.env.GITHUB_TOKEN);
+        if (labelsToAdd.length > 0) {
+          const { context } = require('@actions/github');
+          const { repo, issue } = context.issue;
 
-            await octokit.issues.addLabels({
-              owner: repo.owner,
-              repo: repo.repo,
-              issue_number: pull_request.number,
-              labels: labelsToAdd
-            });
-          }
+          await octokit.issues.addLabels({
+            owner: repo.owner,
+            repo: repo.repo,
+            issue_number: issue.number,
+            labels: labelsToAdd
+          });
+        }
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      shell: node
