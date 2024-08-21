@@ -34,35 +34,21 @@ jobs:
     - name: 设置标签
       if: github.event_name == 'pull_request'
       run: |
-        const { Octokit } = require('@octokit/rest');
-        const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+        result=$(echo ${{ env.result }})
+        labelsToAdd=()
 
-        const result = parseInt(process.env.result);
-        const labelsToAdd = [];
+        if [ "$result" -eq 0 ]; then
+          labelsToAdd+=('检查：通过')
+        elif [ "$result" -eq 1 ] || [ "$result" -eq 3 ]; then
+          labelsToAdd+=('检查：异常')
+        fi
+        if [ "$result" -eq 2 ]; then
+          labelsToAdd+=('检查：重复')
+        fi
+        if [ "$result" -eq 1 ] || [ "$result" -eq 2 ] || [ "$result" -eq 3 ]; then
+          labelsToAdd+=('需要提交者确认')
+        fi
 
-        if (result === 0) {
-          labelsToAdd.push('检查：通过');
-        } else if (result === 1 || result === 3) {
-          labelsToAdd.push('检查：异常');
-        }
-        if (result === 2) {
-          labelsToAdd.push('检查：重复');
-        }
-        if (result === 1 || result === 2 || result === 3) {
-          labelsToAdd.push('需要提交者确认');
-        }
-
-        if (labelsToAdd.length > 0) {
-          const { context } = require('@actions/github');
-          const { repo, issue } = context.issue;
-
-          await octokit.issues.addLabels({
-            owner: repo.owner,
-            repo: repo.repo,
-            issue_number: issue.number,
-            labels: labelsToAdd
-          });
-        }
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      shell: node
+        for label in "${labelsToAdd[@]}"; do
+          gh issue edit ${{ github.event.issue.number }} --add-label "$label"
+        done
