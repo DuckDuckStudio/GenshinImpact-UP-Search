@@ -7,6 +7,7 @@ from colorama import init, Fore
 init(autoreset=True)
 
 os.chdir(os.path.dirname(os.path.abspath(sys.argv[0])))
+
 try:
     os.sys("git pull")
 except:
@@ -66,7 +67,7 @@ def is_valid_query_type(query_type):
 
 # 用户输入搜索对象并进行验证
 while True:
-    query_type = input('请输入搜索对象（UID、UP、ID）：')
+    query_type = input('请输入搜索对象 [UID / UP / ID]: ')
     if is_valid_query_type(query_type):
         break
     else:
